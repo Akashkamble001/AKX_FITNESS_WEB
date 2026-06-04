@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AKX — Akash Kamble Extreme | Build Your Physique</title>
+<meta name="description" content="AKX — Build your physique, build your future. Workouts, diet plans, yoga, anatomy and AI coach." />
+<link rel="icon" href="https://via.placeholder.com/62/7c5cff/ffffff?text=AKX" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06070d;
+  --bg-2:#0b0d18;
+  --panel:rgba(255,255,255,.04);
+  --border:rgba(255,255,255,.08);
+  --text:#eef1f7;
+  --muted:#9aa3b8;
+  --accent:#7c5cff;          /* violet */
+  --accent-2:#22d3ee;         /* cyan */
+  --accent-3:#a3ff12;         /* lime glow */
+  --glow:0 0 24px rgba(124,92,255,.45), 0 0 60px rgba(34,211,238,.25);
+  --grad:linear-gradient(135deg,#7c5cff 0%,#22d3ee 60%,#a3ff12 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
+  overflow-x:hidden;line-height:1.55;
+  background-image:
+    radial-gradient(800px 500px at 10% -10%, rgba(124,92,255,.18), transparent 60%),
+    radial-gradient(900px 600px at 110% 10%, rgba(34,211,238,.14), transparent 60%),
+    radial-gradient(700px 500px at 50% 120%, rgba(163,255,18,.10), transparent 60%);
+}
+h1,h2,h3,h4{font-family:'Bebas Neue',sans-serif;letter-spacing:.04em;line-height:1.02}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.glow-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 20px rgba(124,92,255,.35))}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;
+  font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--grad);color:#0a0a12;border:none;cursor:pointer;
+  box-shadow:var(--glow);transition:transform .25s ease, box-shadow .25s ease;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(124,92,255,.6),0 0 80px rgba(34,211,238,.35)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--border);box-shadow:none}
+.btn.ghost:hover{border-color:var(--accent);box-shadow:0 0 20px rgba(124,92,255,.35)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);
+  background:rgba(6,7,13,.6);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1300px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:80px;height:80px;border-radius:18px;display:grid;place-items:center;
+  background:#06070d;border:1px solid rgba(255,255,255,.12);
+  box-shadow:var(--glow);position:relative;overflow:hidden}
+.logo img{width:100%;height:100%;object-fit:cover}
+.logo::after{content:"";position:absolute;inset:0;border-radius:inherit;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand-name{font-family:'Bebas Neue';font-size:26px;letter-spacing:.18em}
+.brand-name span{color:var(--accent-2)}
+.nav-links{display:flex;gap:22px}
+.nav-links a{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;transition:.2s}
+.nav-links a:hover{color:var(--accent-3);text-shadow:0 0 12px rgba(163,255,18,.6)}
+.burger{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;place-items:center;position:relative;padding:120px 0 60px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200') center 26%/cover no-repeat;
+  filter:brightness(.45) contrast(1.15) saturate(1.25);z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(6,7,13,.92),rgba(6,7,13,.52) 50%,rgba(6,7,13,.9)),
+  linear-gradient(180deg,rgba(6,7,13,.25),rgba(6,7,13,.96));z-index:-1}
+.hero-content{text-align:center;max-width:900px;padding:0 24px;animation:fadeUp 1s ease both}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;padding:9px 16px;border:1px solid rgba(255,255,255,.16);border-radius:999px;background:rgba(255,255,255,.06);color:var(--accent-3);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+.hero h1{font-size:clamp(48px,8vw,118px);margin-bottom:18px;max-width:860px}
+.hero h1 .hero-line{display:block}
+.hero .slogan{font-size:clamp(16px,2vw,22px);color:var(--muted);max-width:640px;margin:0 auto 28px}
+.hero-stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:26px auto 0}
+.hero-stat{min-width:118px;padding:12px 16px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px)}
+.hero-stat strong{display:block;font-family:'Bebas Neue';font-size:30px;color:#fff;line-height:1}
+.hero-stat span{display:block;margin-top:3px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.12em}
+.hero-quote{margin-top:30px;padding:18px 24px;border:1px solid var(--border);border-radius:18px;
+  background:var(--panel);max-width:620px;margin-left:auto;margin-right:auto;font-style:italic;color:#cfd5e6}
+.hero-cta{display:flex;gap:14px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTIONS */
+section{padding:90px 0;position:relative}
+.section-head{text-align:center;margin-bottom:56px}
+.section-head .kicker{font-size:12px;letter-spacing:.3em;color:var(--accent-2);text-transform:uppercase;margin-bottom:10px}
+.section-head h2{font-size:clamp(36px,6vw,72px)}
+.section-head p{color:var(--muted);max-width:640px;margin:14px auto 0}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease, transform .8s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* GRID CARDS */
+.grid{display:grid;gap:22px}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.card{
+  background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:26px;
+  position:relative;overflow:hidden;transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.card:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.5);box-shadow:0 10px 50px rgba(124,92,255,.18)}
+.card h3{font-size:28px;margin-bottom:8px;color:#fff}
+.card p{color:var(--muted);font-size:14px;margin-bottom:14px}
+.card .tag{display:inline-block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-3);margin-bottom:10px}
+.card .yt{display:inline-flex;align-items:center;gap:8px;color:var(--accent-2);font-size:13px;font-weight:600}
+.card .yt:hover{text-shadow:0 0 12px rgba(34,211,238,.7)}
+
+/* PROGRAMS */
+.prog-img{width:100%;height:180px;object-fit:cover;border-radius:14px;margin-bottom:16px;filter:saturate(1.1)}
+
+/* PHYSIQUE BANNER */
+.physique{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:60px 0}
+.physique img{border-radius:24px;box-shadow:0 0 60px rgba(124,92,255,.25);border:1px solid var(--border)}
+.physique h2{font-size:clamp(40px,6vw,80px);margin-bottom:18px}
+.physique p{color:var(--muted);margin-bottom:14px}
+
+/* ANATOMY */
+.anatomy-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:30px;align-items:start}
+.body-stage{position:relative;background:#eef2f5;border:1px solid var(--border);border-radius:24px;padding:0;min-height:560px;display:grid;place-items:center;overflow:hidden;box-shadow:0 0 44px rgba(34,211,238,.18)}
+.body-svg{width:100%;height:100%;min-height:560px;object-fit:cover;object-position:center;filter:saturate(1.08) contrast(1.03);animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px)}}
+.muscle-spot{position:absolute;border:2px solid rgba(163,255,18,.3);background:rgba(163,255,18,.12);box-shadow:none;border-radius:999px;cursor:pointer;transition:.2s;opacity:0.7}
+.muscle-spot:hover{background:rgba(163,255,18,.5);box-shadow:0 0 25px rgba(163,255,18,.8), 0 0 14px rgba(34,211,238,.6), inset 0 0 12px rgba(163,255,18,.4);transform:scale(1.1);opacity:1;border-color:rgba(163,255,18,.8)}
+@keyframes muscleGlow{0%,100%{box-shadow:0 0 18px rgba(34,211,238,.35), inset 0 0 12px rgba(163,255,18,.3)}50%{box-shadow:0 0 28px rgba(163,255,18,.6), inset 0 0 18px rgba(163,255,18,.4)}}
+.spot-neck{left:47%;top:14%;width:5%;height:3%}
+.spot-shoulders{left:26%;top:20%;width:48%;height:6%}
+.spot-chest{left:38%;top:26%;width:24%;height:10%}
+.spot-biceps{left:60%;top:32%;width:10%;height:10%}
+.spot-forearms{left:16%;top:42%;width:12%;height:11%}
+.spot-back{left:42%;top:33%;width:16%;height:14%}
+.spot-abs{left:40%;top:38%;width:20%;height:12%}
+.spot-obliques{left:32%;top:40%;width:16%;height:12%}
+.spot-glutes{left:40%;top:52%;width:20%;height:10%}
+.spot-quads{left:34%;top:60%;width:32%;height:16%}
+.spot-calves{left:37%;top:77%;width:26%;height:12%}
+.spot-triceps{left:24%;top:32%;width:10%;height:10%}
+.atlas-label{font:700 9px 'Inter',sans-serif;letter-spacing:.08em;fill:#eef1f7;text-transform:uppercase;pointer-events:none}
+.atlas-caption{position:absolute;left:20px;right:20px;bottom:16px;text-align:center;color:#07101d;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.88);padding:12px 16px;border-radius:999px;box-shadow:0 4px 16px rgba(0,0,0,.3);z-index:10}
+.muscle-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.muscle-list button{
+  background:var(--panel);border:1px solid var(--border);color:#fff;padding:14px 16px;
+  border-radius:14px;cursor:pointer;text-align:center;font-family:inherit;transition:.2s;font-size:14px;font-weight:600;
+  box-shadow:0 2px 8px rgba(0,0,0,.2)
+}
+.muscle-list button:hover{border-color:var(--accent-3);box-shadow:0 0 18px rgba(163,255,18,.5);background:rgba(163,255,18,.12);transform:translateY(-2px)}
+.muscle-list button.active{background:linear-gradient(135deg,rgba(163,255,18,.3),rgba(34,211,238,.2));border-color:var(--accent-3);box-shadow:0 0 20px rgba(163,255,18,.6)}
+.muscle-info{margin-top:18px;padding:22px;background:var(--panel);border:2px solid rgba(163,255,18,.3);border-radius:16px;min-height:100px;box-shadow:0 0 24px rgba(34,211,238,.2)}
+.muscle-info h4{font-size:28px;color:var(--accent-3);margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em}
+
+/* TOOLS */
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tool{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:22px}
+.tool h3{font-size:24px;margin-bottom:10px;color:var(--accent-2)}
+.tool input,.tool select{
+  width:100%;padding:10px 12px;background:rgba(255,255,255,.05);border:1px solid var(--border);
+  border-radius:10px;color:#fff;font-family:inherit;margin:6px 0;font-size:14px
+}
+.tool input:focus,.tool select:focus{outline:none;border-color:var(--accent)}
+.tool button{margin-top:8px}
+.tool .result{margin-top:12px;padding:12px;border-radius:10px;background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.3);color:#fff;font-weight:600;font-size:14px;min-height:20px}
+.progress{height:10px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin:10px 0}
+.progress > div{height:100%;background:var(--grad);width:0%;transition:width .4s}
+
+/* DIET */
+.diet-tabs{display:flex;gap:10px;justify-content:center;margin-bottom:30px;flex-wrap:wrap}
+.tab{padding:10px 22px;border-radius:99px;border:1px solid var(--border);background:transparent;color:#fff;cursor:pointer;font-family:inherit;font-size:13px;letter-spacing:.15em;text-transform:uppercase;transition:.2s}
+.tab.active{background:var(--grad);color:#0a0a12;border-color:transparent;box-shadow:var(--glow)}
+.meal{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px}
+.meal h4{font-size:22px;color:var(--accent-3);margin-bottom:6px}
+.meal p{color:var(--muted);font-size:14px}
+.meal .edit{margin-top:8px;color:var(--accent-2);font-size:12px;cursor:pointer;background:none;border:none;font-family:inherit}
+.diet-resources{margin-top:28px}
+.diet-resources h3{font-size:32px;margin-bottom:14px;color:var(--accent-2)}
+.resource-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.resource-card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px;transition:.25s}
+.resource-card:hover{border-color:var(--accent-2);transform:translateY(-3px)}
+.resource-card h4{font-family:'Inter';font-size:16px;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.guide-logo{width:34px;height:34px;border-radius:50%;display:inline-grid;place-items:center;flex:0 0 auto;background:#ff0033;color:#fff;font-size:11px;font-weight:900;letter-spacing:.04em;box-shadow:0 0 18px rgba(255,0,51,.28)}
+.guide-logo::before{content:"▶";font-size:13px;margin-left:2px}
+.guide-name{line-height:1.15}
+.resource-card p{color:var(--muted);font-size:13px;margin-bottom:12px}
+.resource-card a{color:var(--accent-3);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.guide-block{margin-top:28px}
+.guide-block h3{font-size:32px;margin-bottom:14px;color:var(--accent-2)}
+
+/* YOGA */
+.yoga-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.yoga-card{background:var(--panel);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:.3s}
+.yoga-card:hover{transform:translateY(-4px);border-color:var(--accent-3)}
+.yoga-card img{height:160px;width:100%;object-fit:cover}
+.yoga-card .body{padding:18px}
+.yoga-card h3{font-size:24px;color:var(--accent-3);margin-bottom:6px}
+
+/* VIDEOS */
+.video-filters{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:24px}
+.video-filters button{padding:8px 16px;border-radius:99px;border:1px solid var(--border);background:transparent;color:#fff;cursor:pointer;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-family:inherit}
+.video-filters button.active{background:var(--accent);color:#0a0a12;border-color:var(--accent);box-shadow:0 0 18px rgba(124,92,255,.5)}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.video-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:.3s;cursor:pointer}
+.video-card:hover{transform:translateY(-4px);border-color:var(--accent-2);box-shadow:0 8px 30px rgba(34,211,238,.2)}
+.thumb{position:relative;aspect-ratio:16/9;background:#000}
+.thumb img{width:100%;height:100%;object-fit:cover;opacity:.85}
+.thumb::after{content:"▶";position:absolute;inset:0;display:grid;place-items:center;font-size:42px;color:#fff;text-shadow:0 0 20px rgba(0,0,0,.7)}
+.video-card .meta{padding:14px}
+.video-card h4{font-size:18px;margin-bottom:4px;color:#fff;font-family:'Inter';font-weight:700}
+.video-card .badges{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.badge{font-size:10px;padding:3px 8px;border-radius:99px;background:rgba(124,92,255,.15);color:var(--accent-2);border:1px solid rgba(124,92,255,.3);letter-spacing:.1em;text-transform:uppercase}
+
+/* ABOUT */
+#about{background:
+  linear-gradient(90deg,rgba(6,7,13,.97),rgba(6,7,13,.78) 52%,rgba(6,7,13,.94)),
+  url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600') center/cover no-repeat;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:center}
+.founder-photo{position:relative}
+.about-img{border-radius:24px;border:1px solid var(--border);box-shadow:0 0 60px rgba(34,211,238,.25);width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center}
+/* logo overlay and slogan removed (moved to overlay on image removed) */
+.about-proof{position:absolute;left:16px;right:16px;bottom:16px;padding:12px 14px;border-radius:14px;background:rgba(6,7,13,.78);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(12px);font-size:12px;color:#cfd5e6;letter-spacing:.08em;text-transform:uppercase}
+.about-content h2{font-size:clamp(40px,5vw,68px);margin-bottom:16px}
+.about-content p{color:var(--muted);margin-bottom:14px;font-size:16px}
+.about-content .highlight{color:var(--accent-3);font-weight:600}
+.socials{display:flex;gap:14px;margin-top:24px;flex-wrap:wrap}
+.social{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:99px;border:1px solid var(--border);background:var(--panel);font-size:13px;transition:.3s}
+.social:hover{border-color:var(--accent);box-shadow:0 0 18px rgba(124,92,255,.4);color:var(--accent-3)}
+
+/* Section backgrounds */
+#programs{background:linear-gradient(180deg,rgba(6,7,13,.86),rgba(6,7,13,.6)), url('https://images.unsplash.com/photo-1558611848-73f7eb4001d3?w=1600') center/cover no-repeat;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+#anatomy{background:linear-gradient(180deg,rgba(6,7,13,.8),rgba(6,7,13,.5)), url('muscle-anatomy.jpg') center/cover no-repeat;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+#tools{background:linear-gradient(180deg,rgba(6,7,13,.9),rgba(6,7,13,.6)), url('https://images.unsplash.com/photo-1507608869272-0f1a6a2f4b2b?w=1600') center/cover no-repeat;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+#diet{background:linear-gradient(180deg,rgba(6,7,13,.6),rgba(6,7,13,.85)), url('healthy-diet-bg.webp') center/cover no-repeat;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+#yoga{background:linear-gradient(180deg,rgba(6,7,13,.6),rgba(6,7,13,.9)), url('https://images.unsplash.com/photo-1519877972611-f9f4b0b7b342?w=1600') center/cover no-repeat;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+#videos{background:linear-gradient(180deg,rgba(6,7,13,.7),rgba(6,7,13,.95)), url('https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?w=1600') center/cover no-repeat;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+#programs .container, #anatomy .container, #tools .container, #diet .container, #yoga .container, #videos .container{position:relative;z-index:2}
+#programs::after,#anatomy::after,#tools::after,#diet::after,#yoga::after,#videos::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,7,13,.25),rgba(6,7,13,.65));z-index:1}
+
+/* CHAT */
+.chat-btn{position:fixed;bottom:24px;right:24px;width:62px;height:62px;border-radius:50%;background:var(--grad);color:#0a0a12;display:grid;place-items:center;font-size:28px;border:none;cursor:pointer;z-index:60;box-shadow:var(--glow);animation:pulse 2.4s ease infinite}
+.chat-btn::after{content:"Ask AI";position:absolute;right:68px;white-space:nowrap;padding:8px 11px;border-radius:999px;background:rgba(11,13,24,.92);border:1px solid var(--border);color:#eef1f7;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+@keyframes pulse{50%{box-shadow:0 0 40px rgba(124,92,255,.7),0 0 80px rgba(34,211,238,.5)}}
+.chat-panel{position:fixed;bottom:100px;right:24px;width:340px;max-width:90vw;height:480px;background:rgba(11,13,24,.95);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:20px;display:none;flex-direction:column;z-index:60;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.chat-panel.open{display:flex;animation:fadeUp .3s ease}
+.chat-head{padding:14px 18px;border-bottom:1px solid var(--border);background:var(--grad);color:#0a0a12;font-weight:700}
+.chat-body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px}
+.msg{padding:10px 14px;border-radius:14px;max-width:80%;font-size:14px;line-height:1.4}
+.msg.bot{background:rgba(124,92,255,.15);border:1px solid rgba(124,92,255,.3);align-self:flex-start}
+.msg.user{background:var(--accent-2);color:#0a0a12;align-self:flex-end}
+.chat-input{display:flex;border-top:1px solid var(--border)}
+.chat-input input{flex:1;padding:12px 14px;background:transparent;border:none;color:#fff;font-family:inherit}
+.chat-input input:focus{outline:none}
+.chat-input button{padding:0 18px;background:var(--accent);color:#0a0a12;border:none;cursor:pointer;font-weight:700}
+
+/* FOOTER */
+footer{padding:40px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:14px}
+
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);display:none;place-items:center;z-index:100;padding:20px}
+.modal.open{display:grid}
+.modal-content{background:var(--bg-2);border:1px solid var(--border);border-radius:18px;max-width:900px;width:100%;overflow:hidden}
+.modal-content iframe{width:100%;aspect-ratio:16/9;border:none}
+.modal-close{position:absolute;top:20px;right:20px;background:var(--grad);border:none;color:#0a0a12;width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:20px;font-weight:700}
+
+/* RESPONSIVE */
+@media (max-width:900px){
+  .grid-3,.tools,.yoga-grid,.video-grid,.resource-grid{grid-template-columns:1fr 1fr}
+  .anatomy-wrap,.physique,.about-wrap{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .burger{display:block}
+  .nav-links.open{display:flex;position:absolute;top:100%;left:0;right:0;background:rgba(6,7,13,.98);flex-direction:column;padding:20px;border-bottom:1px solid var(--border)}
+}
+@media (max-width:560px){
+  .grid-3,.grid-2,.tools,.yoga-grid,.video-grid,.resource-grid{grid-template-columns:1fr}
+  .muscle-list{grid-template-columns:1fr}
+  section{padding:60px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="logo"><img src="akx-logo.jpg" alt="AKX logo"></div>
+      <div class="brand-name">AK<span>X</span></div>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#programs">Programs</a>
+      <a href="#anatomy">Muscles</a>
+      <a href="#tools">Tools</a>
+      <a href="#diet">Diet</a>
+      <a href="#yoga">Yoga</a>
+      <a href="#videos">Videos</a>
+      <a href="#about">About</a>
+    </div>
+    <button class="burger" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-content">
+    <div class="hero-badge">AKX Training System</div>
+    <h1 class="glow-text"><span class="hero-line">BUILD THE</span><span class="hero-line">AKX PHYSIQUE</span></h1>
+    <p class="slogan">Train with purpose, eat with discipline, and build a body that proves your consistency.</p>
+    <div class="hero-cta">
+      <a href="#programs" class="btn">Start Training</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>12+</strong><span>Muscle Guides</span></div>
+      <div class="hero-stat"><strong>6</strong><span>Programs</span></div>
+      <div class="hero-stat"><strong>India</strong><span>Diet Focus</span></div>
+    </div>
+    <div class="hero-quote">
+      "Knowledge belongs to everyone. AKX is open to all — because the only thing standing between you and the body you want is a coach who believes in you."
+    </div>
+  </div>
+</header>
+
+<!-- PHYSIQUE BANNER -->
+<section class="container">
+  <div class="physique reveal">
+    <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=900" alt="Physique" />
+    <div>
+      <div class="kicker" style="color:var(--accent-2);letter-spacing:.3em;font-size:12px;text-transform:uppercase;margin-bottom:10px">The AKX Way</div>
+      <h2 class="glow-text">DISCIPLINE BUILDS LEGENDS.</h2>
+      <p>Every rep is a vote for the person you want to become. AKX is a movement built on consistency, intelligent training, and the belief that a strong body fuels a stronger mind.</p>
+      <p>Whether you train at home or in the gym — beginner or advanced — your journey starts here.</p>
+      <a href="#programs" class="btn" style="margin-top:14px">Explore Programs</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">/ 01 Programs</div>
+      <h2>TRAIN WITH PURPOSE</h2>
+      <p>Six structured programs designed for every level. Tap any program to watch the guided session.</p>
+    </div>
+    <div class="grid grid-3 reveal" id="programGrid"></div>
+  </div>
+</section>
+
+<!-- ANATOMY -->
+<section id="anatomy">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">/ 02 Muscle Atlas</div>
+      <h2>KNOW YOUR BODY</h2>
+      <p>Click any muscle on the animated body map or in the list — open reliable YouTube tutorials instantly.</p>
+    </div>
+    <div class="anatomy-wrap reveal">
+      <div class="body-stage">
+        <img class="body-svg" src="muscle-anatomy.jpg" alt="Muscular anatomy guide"/>
+        <button class="muscle-spot spot-neck" data-m="neck" aria-label="Neck"></button>
+        <button class="muscle-spot spot-shoulders" data-m="shoulders" aria-label="Shoulders"></button>
+        <button class="muscle-spot spot-chest" data-m="chest" aria-label="Chest"></button>
+        <button class="muscle-spot spot-biceps" data-m="biceps" aria-label="Biceps"></button>
+        <button class="muscle-spot spot-forearms" data-m="forearms" aria-label="Forearms"></button>
+        <button class="muscle-spot spot-back" data-m="back" aria-label="Back"></button>
+        <button class="muscle-spot spot-abs" data-m="abs" aria-label="Abs"></button>
+        <button class="muscle-spot spot-obliques" data-m="obliques" aria-label="Obliques"></button>
+        <button class="muscle-spot spot-glutes" data-m="glutes" aria-label="Glutes"></button>
+        <button class="muscle-spot spot-quads" data-m="quads" aria-label="Quads"></button>
+        <button class="muscle-spot spot-calves" data-m="calves" aria-label="Calves"></button>
+        <button class="muscle-spot spot-triceps" data-m="triceps" aria-label="Triceps"></button>
+        <div class="atlas-caption">Tap colored muscle groups</div>
+      </div>
+      <div>
+        <div class="muscle-list" id="muscleList"></div>
+        <div class="muscle-info" id="muscleInfo">
+          <h4>Pick a muscle</h4>
+          <p style="color:var(--muted)">Click on the body or any button to load the best tutorial.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">/ 03 Tools</div>
+      <h2>SMART FITNESS TOOLS</h2>
+      <p>Calculators and trackers — everything you need to train smarter.</p>
+    </div>
+    <div class="tools reveal">
+      <div class="tool">
+        <h3>BMI Calculator</h3>
+        <input id="bmiH" type="number" placeholder="Height (cm)" />
+        <input id="bmiW" type="number" placeholder="Weight (kg)" />
+        <button class="btn" onclick="calcBMI()">Calculate</button>
+        <div class="result" id="bmiR">—</div>
+      </div>
+      <div class="tool">
+        <h3>TDEE / Calories</h3>
+        <input id="tA" type="number" placeholder="Age" />
+        <input id="tH" type="number" placeholder="Height (cm)" />
+        <input id="tW" type="number" placeholder="Weight (kg)" />
+        <select id="tS"><option value="male">Male</option><option value="female">Female</option></select>
+        <select id="tAct">
+          <option value="1.2">Sedentary</option><option value="1.375">Light</option>
+          <option value="1.55">Moderate</option><option value="1.725">Active</option>
+        </select>
+        <button class="btn" onclick="calcTDEE()">Calculate</button>
+        <div class="result" id="tR">—</div>
+      </div>
+      <div class="tool">
+        <h3>Body Fat % (Navy)</h3>
+        <select id="bfS"><option value="male">Male</option><option value="female">Female</option></select>
+        <input id="bfH" type="number" placeholder="Height (cm)"/>
+        <input id="bfN" type="number" placeholder="Neck (cm)"/>
+        <input id="bfWa" type="number" placeholder="Waist (cm)"/>
+        <input id="bfHip" type="number" placeholder="Hip (women only, cm)"/>
+        <button class="btn" onclick="calcBF()">Calculate</button>
+        <div class="result" id="bfR">—</div>
+      </div>
+      <div class="tool">
+        <h3>Calorie Tracker</h3>
+        <input id="calItem" placeholder="Food (e.g. Roti)"/>
+        <input id="calVal" type="number" placeholder="Calories"/>
+        <button class="btn" onclick="addCal()">Add</button>
+        <div class="progress"><div id="calBar"></div></div>
+        <div class="result" id="calR">0 / 2000 kcal</div>
+        <div id="calList" style="margin-top:8px;font-size:12px;color:var(--muted);max-height:80px;overflow-y:auto"></div>
+      </div>
+      <div class="tool">
+        <h3>Water Tracker</h3>
+        <p style="color:var(--muted);font-size:13px">Goal: 8 glasses / day</p>
+        <div class="progress"><div id="watBar"></div></div>
+        <div class="result" id="watR">0 / 8 glasses</div>
+        <button class="btn" onclick="addWater()" style="margin-top:8px">+ Glass</button>
+        <button class="btn ghost" onclick="resetWater()" style="margin-top:8px">Reset</button>
+      </div>
+      <div class="tool">
+        <h3>1RM Calculator</h3>
+        <input id="rmW" type="number" placeholder="Weight lifted (kg)"/>
+        <input id="rmR" type="number" placeholder="Reps performed"/>
+        <button class="btn" onclick="calcRM()">Calculate</button>
+        <div class="result" id="rmRes">—</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIET -->
+<section id="diet">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">/ 04 Indian Diet Plans</div>
+      <h2>EAT TO TRANSFORM</h2>
+      <p>Customizable Indian meal plans. Tap any meal to edit it to your taste.</p>
+    </div>
+    <div class="diet-tabs reveal">
+      <button class="tab active" onclick="setDiet('veg',this)">Veg 🌱</button>
+      <button class="tab" onclick="setDiet('nonveg',this)">Non-Veg 🍗</button>
+    </div>
+    <div id="dietList" class="reveal"></div>
+    <div class="diet-resources reveal">
+      <h3>Indian Diet Video Guides</h3>
+      <div class="resource-grid" id="dietResourceGrid"></div>
+    </div>
+    <div class="guide-block reveal">
+      <h3>Indian Workout Guides</h3>
+      <div class="resource-grid" id="workoutGuideGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- YOGA -->
+<section id="yoga">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">/ 05 Yoga</div>
+      <h2>BREATHE. BEND. BECOME.</h2>
+      <p>Yoga is the bridge between body and mind — flexibility, focus, and inner strength.</p>
+    </div>
+    <div class="yoga-grid reveal" id="yogaGrid"></div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">/ 06 Video Library</div>
+      <h2>TRAIN WITH THE BEST</h2>
+      <p>Curated workouts for every level — filter to find your perfect session.</p>
+    </div>
+    <div class="video-filters reveal">
+      <button class="active" data-f="all">All</button>
+      <button data-f="beginner">Beginner</button>
+      <button data-f="intermediate">Intermediate</button>
+      <button data-f="stretch">Stretching</button>
+      <button data-f="dumbbell">With Dumbbell</button>
+      <button data-f="nodumbbell">No Dumbbell</button>
+      <button data-f="home">Home</button>
+      <button data-f="gym">Gym</button>
+      <button data-f="men">For Men</button>
+      <button data-f="women">For Women</button>
+    </div>
+    <div class="video-grid reveal" id="videoGrid"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">/ 07 About the Founder</div>
+      <h2>MEET AKASH KAMBLE</h2>
+    </div>
+    <div class="about-wrap reveal">
+      <div class="founder-photo">
+        <img class="about-img" src="akash-physique.jpg" alt="Akash Kamble physique progress"/>
+        <div class="about-proof">Founder physique check: built by Akash</div>
+      </div>
+      <div class="about-content">
+        <h2 class="glow-text">I'M AKASH — YOUR COACH.</h2>
+        <p>I'm <span class="highlight">Akash Kamble</span>, founder of AKX — a fitness obsessive who believes <span class="highlight">technology and discipline together can transform anyone.</span></p>
+        <p>I built AKX because I know how confusing fitness can feel when you start — too many opinions, too many programs, too many lies. AKX gives you the real stuff: structured workouts, honest nutrition, and tools that work — all in one place.</p>
+        <p><em>"You don't need motivation. You need a plan, a coach, and one more rep. AKX gives you all three."</em></p>
+        <div class="socials">
+          <a class="social" href="tel:+917483013431" target="_blank">📞 +91 7483013431</a>
+          <a class="social" href="https://www.instagram.com/_aesthetic_akash_?igsh=MXNoNXpsY2t2bDhjYg%3D%3D&utm_source=qr" target="_blank">📸 Instagram</a>
+          <a class="social" href="https://wa.me/917483013431?text=Hi%20Akash!%20I%27m%20interested%20in%20AKX%20training." target="_blank" rel="noopener">💬 Share on WhatsApp</a>
+          <a class="social" href="mailto:aakashkamble9969@gmail.com">✉️ Email</a>
+          <a class="social" href="https://linkedin.com/in/akash-kamble-928015377" target="_blank">in LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2026 <strong>AKX — Akash Kamble Extreme.</strong> Built with discipline. Open to all.
+  </div>
+</footer>
+
+<!-- CHAT -->
+<button class="chat-btn" onclick="toggleChat()" aria-label="Ask the AI Coach">AI</button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-head">Ask the AI Coach</div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">Hey champ! Ask the AI Coach about workouts, diet, muscles or motivation 💪</div>
+  </div>
+  <div class="chat-input">
+    <input id="chatIn" placeholder="Ask anything..." onkeydown="if(event.key==='Enter')sendChat()"/>
+    <button onclick="sendChat()">Send</button>
+  </div>
+</div>
+
+<!-- VIDEO MODAL -->
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <div class="modal-content"><iframe id="modalFrame" allowfullscreen></iframe></div>
+</div>
+
+<script>
+/* ---- DATA ---- */
+const PROGRAMS = [
+  {t:"Full Body Strength",img:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600",d:"A complete routine for beginners and intermediates that trains chest, back, legs, arms, and core.",url:"https://www.youtube.com/results?search_query=full+body+strength+workout+men+and+women+beginner"},
+  {t:"Upper Body Power",img:"https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600",d:"Chest, back, shoulders, biceps, and triceps training for a stronger upper body.",url:"https://www.youtube.com/results?search_query=upper+body+workout+chest+back+shoulders+arms+men+women"},
+  {t:"Lower Body Builder",img:"https://images.unsplash.com/photo-1434608519344-49d77a699e1d?w=600",d:"Quads, hamstrings, glutes, and calves with squat, lunge, and hip-hinge patterns.",url:"https://www.youtube.com/results?search_query=lower+body+workout+legs+glutes+men+women"},
+  {t:"Core & Abs",img:"https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600",d:"Core strength and abs training for stability, posture, and visible definition.",url:"https://www.youtube.com/results?search_query=core+and+abs+workout+men+women+no+equipment"},
+  {t:"HIIT Cardio Burn",img:"https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=600",d:"A high-energy fat-loss workout for stamina, conditioning, and calorie burn.",url:"https://www.youtube.com/results?search_query=HIIT+cardio+fat+burn+workout+men+women+no+equipment"},
+  {t:"Mobility & Recovery",img:"https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600",d:"Stretching and mobility work to reduce tightness and improve movement quality.",url:"https://www.youtube.com/results?search_query=mobility+recovery+stretching+routine+men+women"},
+];
+
+const MUSCLES = {
+  neck:{n:"Neck",url:"https://www.youtube.com/results?search_query=safe+neck+strengthening+exercises+for+beginners",d:"Strengthen your neck with slow, controlled movement and careful range."},
+  shoulders:{n:"Shoulders",url:"https://www.youtube.com/results?search_query=best+shoulder+workout+for+round+delts",d:"Build round delts with presses, raises, and rear-delt work."},
+  chest:{n:"Chest",url:"https://www.youtube.com/results?search_query=best+chest+workout+for+muscle+gain+pushups+bench+press",d:"Develop a thick chest with presses, flyes, and strong push-up mechanics."},
+  biceps:{n:"Biceps",url:"https://www.youtube.com/results?search_query=best+biceps+workout+with+dumbbells+strict+form",d:"Build bigger arms with curls, tempo, and strict form."},
+  forearms:{n:"Forearms",url:"https://www.youtube.com/results?search_query=forearm+workout+grip+strength+at+home",d:"Improve grip strength and forearm size with targeted training."},
+  back:{n:"Back",url:"https://www.youtube.com/results?search_query=best+back+workout+v+taper+lats+rows+pullups",d:"Rows, pull-downs, and pull-ups for a wider, denser back."},
+  abs:{n:"Abs",url:"https://www.youtube.com/results?search_query=best+abs+workout+core+definition+no+equipment",d:"Train the full core with flexion, bracing, and anti-rotation work."},
+  obliques:{n:"Obliques",url:"https://www.youtube.com/results?search_query=oblique+workout+side+abs+core+rotation",d:"Sculpt the side core with controlled rotational work."},
+  quads:{n:"Quads",url:"https://www.youtube.com/results?search_query=quad+workout+squats+lunges+leg+day",d:"Build powerful thighs with squat and lunge patterns."},
+  glutes:{n:"Glutes",url:"https://www.youtube.com/results?search_query=glute+workout+hip+thrust+squats+home+gym",d:"Train hip extension for stronger glutes and better lower-body power."},
+  calves:{n:"Calves",url:"https://www.youtube.com/results?search_query=calves+workout+full+range+calf+raises",d:"Use full range and pauses to grow stubborn calves."},
+  triceps:{n:"Triceps",url:"https://www.youtube.com/results?search_query=best+triceps+workout+long+head+lateral+head",d:"Target long, lateral, and medial heads for fuller arms."},
+};
+
+const DIETS = {
+  veg: [
+    {t:"Breakfast — 7:30 AM",d:"2 Methi Paratha + low-fat curd + 1 banana + green tea",cals:"~480 kcal"},
+    {t:"Mid-Morning — 10:30 AM",d:"Handful of almonds + 1 apple + coconut water",cals:"~220 kcal"},
+    {t:"Lunch — 1:00 PM",d:"2 Roti + Dal + Paneer Bhurji + Salad + Curd",cals:"~620 kcal"},
+    {t:"Pre-Workout — 4:30 PM",d:"Banana + black coffee + 2 dates",cals:"~180 kcal"},
+    {t:"Post-Workout — 6:30 PM",d:"Whey/Soy protein shake + 1 boiled sweet potato",cals:"~320 kcal"},
+    {t:"Dinner — 8:30 PM",d:"Khichdi with mixed vegetables + curd + ghee (1 tsp)",cals:"~480 kcal"},
+  ],
+  nonveg: [
+    {t:"Breakfast — 7:30 AM",d:"4 egg whites + 2 whole eggs omelette + 2 multigrain toast + green tea",cals:"~520 kcal"},
+    {t:"Mid-Morning — 10:30 AM",d:"Greek yogurt + 1 apple + 10 almonds",cals:"~260 kcal"},
+    {t:"Lunch — 1:00 PM",d:"2 Roti + 150g grilled chicken + Dal + Salad",cals:"~680 kcal"},
+    {t:"Pre-Workout — 4:30 PM",d:"Banana + black coffee + 2 dates",cals:"~180 kcal"},
+    {t:"Post-Workout — 6:30 PM",d:"Whey protein shake + 1 boiled egg + sweet potato",cals:"~360 kcal"},
+    {t:"Dinner — 8:30 PM",d:"Grilled fish/chicken + brown rice + sautéed veggies",cals:"~520 kcal"},
+  ]
+};
+
+const YOGA = [
+  {t:"Surya Namaskar",img:"https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600",d:"12-pose sun salutation. The ultimate full-body warm-up. Burns ~13 cal/round.",yt:"https://www.youtube.com/embed/73sjOu0g58M"},
+  {t:"Power Yoga",img:"https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=600",d:"Dynamic, strength-focused yoga that builds muscle and burns fat.",yt:"https://www.youtube.com/embed/Eml2xnoLpYE"},
+  {t:"Pranayama Breathing",img:"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600",d:"Master your breath — Anulom Vilom, Kapalbhati, Bhramari. Calm mind, stronger lungs.",yt:"https://www.youtube.com/embed/8VwufJrUhic"},
+  {t:"Flexibility Flow",img:"https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600",d:"30-min flow to unlock tight hips, hamstrings and shoulders.",yt:"https://www.youtube.com/embed/v7AYKMP6rOE"},
+  {t:"Meditation 101",img:"https://images.unsplash.com/photo-1474418397713-7ede21d49118?w=600",d:"Guided meditation for focus, sleep and stress relief.",yt:"https://www.youtube.com/embed/inpok4MKVLM"},
+  {t:"Yoga for Back Pain",img:"https://images.unsplash.com/photo-1593810450967-f9c42742e326?w=600",d:"Heal and strengthen your spine with these targeted poses.",yt:"https://www.youtube.com/embed/Eml2xnoLpYE"},
+];
+
+const DIET_CREATORS = [
+  {t:"Fit Tuber",d:"Indian food swaps, healthy recipes, and practical meal ideas.",url:"https://www.youtube.com/results?search_query=Fit+Tuber+Indian+high+protein+diet+plan"},
+  {t:"Guru Mann / T-Series Health",d:"Structured Indian bodybuilding and transformation diet plans.",url:"https://www.youtube.com/results?search_query=Guru+Mann+Indian+bodybuilding+diet+plan"},
+  {t:"Yatinder Singh",d:"Indian muscle-gain and fat-loss diet guidance for gym athletes.",url:"https://www.youtube.com/results?search_query=Yatinder+Singh+diet+plan+muscle+gain+India"},
+  {t:"Abhinav Mahajan",d:"Simple Indian bulking, cutting, and body recomposition explainers.",url:"https://www.youtube.com/results?search_query=Abhinav+Mahajan+Indian+diet+plan+muscle+gain"},
+  {t:"BeerBiceps Fitness",d:"Beginner-friendly Indian nutrition and lifestyle fitness videos.",url:"https://www.youtube.com/results?search_query=BeerBiceps+Indian+diet+plan+fitness"},
+  {t:"HealthifyMe",d:"Indian dietitian-style recipes, weight-loss meals, and nutrition basics.",url:"https://www.youtube.com/results?search_query=HealthifyMe+Indian+diet+plan+high+protein"},
+];
+
+const WORKOUT_CREATORS = [
+  {t:"Saket Gokhale",d:"Indian natural bodybuilding, gym routines, and realistic transformation training.",url:"https://www.youtube.com/results?search_query=Saket+Gokhale+workout+routine"},
+  {t:"Yatinder Singh",d:"Bodybuilding workouts, muscle-building form tips, and Indian gym guidance.",url:"https://www.youtube.com/results?search_query=Yatinder+Singh+workout+routine"},
+  {t:"Jeet Selal",d:"Hindi fitness education, exercise science, and practical workout breakdowns.",url:"https://www.youtube.com/results?search_query=Jeet+Selal+workout+guide"},
+  {t:"Guru Mann",d:"Structured programs for fat loss, muscle gain, and strength training.",url:"https://www.youtube.com/results?search_query=Guru+Mann+workout+program"},
+  {t:"Rohit Khatri Fitness",d:"Indian gym training, transformation workouts, and body-part sessions.",url:"https://www.youtube.com/results?search_query=Rohit+Khatri+Fitness+workout"},
+  {t:"Tarun Gill",d:"Indian fitness interviews, bodybuilding advice, and workout motivation.",url:"https://www.youtube.com/results?search_query=Tarun+Gill+fitness+workout"},
+];
+
+const VIDEOS = [
+  {t:"Beginner Full Body (No Equipment)",thumb:"https://img.youtube.com/vi/UBMk30rjy0o/hqdefault.jpg",yt:"https://www.youtube.com/embed/UBMk30rjy0o",tags:["beginner","home","nodumbbell","men","women"]},
+  {t:"30-Min Dumbbell Full Body",thumb:"https://img.youtube.com/vi/U0bhE67HuDY/hqdefault.jpg",yt:"https://www.youtube.com/embed/U0bhE67HuDY",tags:["intermediate","dumbbell","home","gym","men"]},
+  {t:"Morning Stretching Routine",thumb:"https://img.youtube.com/vi/sTANio_2E0Q/hqdefault.jpg",yt:"https://www.youtube.com/embed/sTANio_2E0Q",tags:["stretch","beginner","home","women","men"]},
+  {t:"Women's Booty & Legs (Home)",thumb:"https://img.youtube.com/vi/8nXARkRky3c/hqdefault.jpg",yt:"https://www.youtube.com/embed/8nXARkRky3c",tags:["women","home","nodumbbell","intermediate"]},
+  {t:"Men's Chest & Triceps (Gym)",thumb:"https://img.youtube.com/vi/jEnt9-z3YyA/hqdefault.jpg",yt:"https://www.youtube.com/embed/jEnt9-z3YyA",tags:["men","gym","intermediate","dumbbell"]},
+  {t:"Beginner Yoga Stretch",thumb:"https://img.youtube.com/vi/v7AYKMP6rOE/hqdefault.jpg",yt:"https://www.youtube.com/embed/v7AYKMP6rOE",tags:["stretch","beginner","home","women"]},
+  {t:"HIIT Fat Burn — No Equipment",thumb:"https://img.youtube.com/vi/ml6cT4AZdqI/hqdefault.jpg",yt:"https://www.youtube.com/embed/ml6cT4AZdqI",tags:["intermediate","home","nodumbbell","men","women"]},
+  {t:"Dumbbell Arms Blast",thumb:"https://img.youtube.com/vi/in7PaeYlhrM/hqdefault.jpg",yt:"https://www.youtube.com/embed/in7PaeYlhrM",tags:["dumbbell","home","gym","men","intermediate"]},
+  {t:"Women's Total Body Dumbbell",thumb:"https://img.youtube.com/vi/U0bhE67HuDY/hqdefault.jpg",yt:"https://www.youtube.com/embed/U0bhE67HuDY",tags:["women","dumbbell","home","gym","intermediate"]},
+  {t:"Beginner Gym Workout (Men)",thumb:"https://img.youtube.com/vi/eMjyvIQbn9M/hqdefault.jpg",yt:"https://www.youtube.com/embed/eMjyvIQbn9M",tags:["beginner","gym","men"]},
+  {t:"Deep Stretch & Mobility",thumb:"https://img.youtube.com/vi/L_xrDAtykMI/hqdefault.jpg",yt:"https://www.youtube.com/embed/L_xrDAtykMI",tags:["stretch","beginner","home","women","men"]},
+  {t:"Advanced Push Day (Gym)",thumb:"https://img.youtube.com/vi/2pLT-olgUJs/hqdefault.jpg",yt:"https://www.youtube.com/embed/2pLT-olgUJs",tags:["intermediate","gym","men","dumbbell"]},
+];
+
+/* ---- RENDER ---- */
+const $ = s=>document.querySelector(s);
+
+function renderPrograms(){
+  $('#programGrid').innerHTML = PROGRAMS.map(p=>`
+    <div class="card">
+      <img class="prog-img" src="${p.img}" alt="${p.t}"/>
+      <span class="tag">Program</span>
+      <h3>${p.t}</h3>
+      <p>${p.d}</p>
+      <a class="yt" href="${p.url}" target="_blank" rel="noopener">▶ Open Matching Videos</a>
+    </div>`).join('');
+}
+
+function renderMuscles(){
+  $('#muscleList').innerHTML = Object.entries(MUSCLES).map(([k,m])=>
+    `<button class="muscle-btn" data-muscle="${k}" onclick="showMuscle('${k}')">${m.n}</button>`).join('');
+  document.querySelectorAll('.muscle-spot').forEach(el=>{
+    el.addEventListener('click',()=>showMuscle(el.dataset.m));
+    el.addEventListener('mouseenter',()=>showMuscle(el.dataset.m));
+  });
+}
+function showMuscle(k){
+  const m = MUSCLES[k]; if(!m)return;
+  // Update active button state
+  document.querySelectorAll('.muscle-btn').forEach(btn=>btn.classList.remove('active'));
+  document.querySelector(`[data-muscle="${k}"]`).classList.add('active');
+  // Update muscle info display
+  $('#muscleInfo').innerHTML = `<h4>${m.n}</h4><p style="color:var(--muted);margin-bottom:16px;line-height:1.6">${m.d}</p>
+    <a class="btn" href="${m.url}" target="_blank" rel="noopener">▶ Open YouTube Tutorials</a>`;
+}
+
+function renderDiet(type='veg'){
+  $('#dietList').innerHTML = DIETS[type].map((m,i)=>`
+    <div class="meal">
+      <h4>${m.t}</h4>
+      <p id="diet-${type}-${i}">${m.d}</p>
+      <small style="color:var(--accent-2)">${m.cals}</small><br/>
+      <button class="edit" onclick="editMeal('${type}',${i})">✎ Edit this meal</button>
+    </div>`).join('');
+}
+function renderDietCreators(){
+  $('#dietResourceGrid').innerHTML = DIET_CREATORS.map(r=>`
+    <div class="resource-card">
+      <h4><span class="guide-logo" aria-hidden="true"></span><span class="guide-name">${r.t}</span></h4>
+      <p>${r.d}</p>
+      <a href="${r.url}" target="_blank" rel="noopener">Open videos</a>
+    </div>`).join('');
+}
+function renderWorkoutCreators(){
+  $('#workoutGuideGrid').innerHTML = WORKOUT_CREATORS.map(r=>`
+    <div class="resource-card">
+      <h4><span class="guide-logo" aria-hidden="true"></span><span class="guide-name">${r.t}</span></h4>
+      <p>${r.d}</p>
+      <a href="${r.url}" target="_blank" rel="noopener">Open workouts</a>
+    </div>`).join('');
+}
+function editMeal(type,i){
+  const cur = DIETS[type][i].d;
+  const v = prompt('Edit meal:', cur);
+  if(v!==null){ DIETS[type][i].d = v; renderDiet(type); }
+}
+let activeDiet='veg';
+function setDiet(t,btn){activeDiet=t;document.querySelectorAll('.diet-tabs .tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderDiet(t);}
+
+function renderYoga(){
+  $('#yogaGrid').innerHTML = YOGA.map(y=>`
+    <div class="yoga-card">
+      <img src="${y.img}" alt="${y.t}"/>
+      <div class="body">
+        <h3>${y.t}</h3>
+        <p style="color:var(--muted);font-size:14px;margin-bottom:10px">${y.d}</p>
+        <a class="yt" href="#" onclick="openVideo('${y.yt}');return false">▶ Watch</a>
+      </div>
+    </div>`).join('');
+}
+
+let videoFilter='all';
+function renderVideos(){
+  const list = VIDEOS.filter(v=>videoFilter==='all'||v.tags.includes(videoFilter));
+  $('#videoGrid').innerHTML = list.map(v=>`
+    <div class="video-card" onclick="openVideo('${v.yt}')">
+      <div class="thumb"><img src="${v.thumb}" alt="${v.t}"/></div>
+      <div class="meta">
+        <h4>${v.t}</h4>
+        <div class="badges">${v.tags.map(t=>`<span class="badge">${t}</span>`).join('')}</div>
+      </div>
+    </div>`).join('');
+}
+document.querySelectorAll('.video-filters button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.video-filters button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active'); videoFilter=b.dataset.f; renderVideos();
+  });
+});
+
+/* MODAL */
+function openVideo(url){$('#modalFrame').src=url;$('#modal').classList.add('open');}
+function closeModal(){$('#modal').classList.remove('open');$('#modalFrame').src='';}
+
+/* TOOLS */
+function calcBMI(){
+  const h=+$('#bmiH').value/100, w=+$('#bmiW').value;
+  if(!h||!w)return $('#bmiR').textContent='Enter both fields';
+  const b=(w/(h*h)).toFixed(1);
+  let s='Healthy ✓';
+  if(b<18.5)s='Underweight';else if(b>=25&&b<30)s='Overweight';else if(b>=30)s='Obese';
+  $('#bmiR').textContent=`BMI ${b} — ${s}`;
+}
+function calcTDEE(){
+  const a=+$('#tA').value,h=+$('#tH').value,w=+$('#tW').value,s=$('#tS').value,act=+$('#tAct').value;
+  if(!a||!h||!w)return $('#tR').textContent='Fill all fields';
+  const bmr = s==='male' ? 10*w+6.25*h-5*a+5 : 10*w+6.25*h-5*a-161;
+  $('#tR').textContent=`TDEE: ${Math.round(bmr*act)} kcal/day`;
+}
+function calcBF(){
+  const s=$('#bfS').value,h=+$('#bfH').value,n=+$('#bfN').value,wa=+$('#bfWa').value,hip=+$('#bfHip').value;
+  if(!h||!n||!wa)return $('#bfR').textContent='Fill required fields';
+  let bf;
+  if(s==='male') bf = 495/(1.0324-0.19077*Math.log10(wa-n)+0.15456*Math.log10(h))-450;
+  else { if(!hip)return $('#bfR').textContent='Add hip'; bf = 495/(1.29579-0.35004*Math.log10(wa+hip-n)+0.22100*Math.log10(h))-450;}
+  $('#bfR').textContent=`Body Fat: ${bf.toFixed(1)}%`;
+}
+let cals=0,calItems=[];
+function addCal(){
+  const i=$('#calItem').value,v=+$('#calVal').value;
+  if(!i||!v)return;
+  cals+=v;calItems.push(`${i} — ${v} kcal`);
+  $('#calBar').style.width=Math.min(100,cals/2000*100)+'%';
+  $('#calR').textContent=`${cals} / 2000 kcal`;
+  $('#calList').innerHTML=calItems.map(x=>`• ${x}`).join('<br/>');
+  $('#calItem').value='';$('#calVal').value='';
+}
+let water=0;
+function addWater(){if(water<8){water++;upWater()}}
+function resetWater(){water=0;upWater()}
+function upWater(){$('#watBar').style.width=water/8*100+'%';$('#watR').textContent=`${water} / 8 glasses`}
+function calcRM(){
+  const w=+$('#rmW').value,r=+$('#rmR').value;
+  if(!w||!r)return $('#rmRes').textContent='Fill both';
+  $('#rmRes').textContent=`1RM ≈ ${Math.round(w*(1+r/30))} kg`;
+}
+
+/* CHAT */
+function toggleChat(){$('#chatPanel').classList.toggle('open')}
+function sendChat(){
+  const inp=$('#chatIn'),q=inp.value.trim();if(!q)return;
+  const body=$('#chatBody');
+  body.innerHTML+=`<div class="msg user">${q}</div>`;
+  body.innerHTML+=`<div class="msg bot">${reply(q)}</div>`;
+  inp.value='';body.scrollTop=body.scrollHeight;
+}
+function reply(q){
+  const Q=q.toLowerCase();
+  if(/chest|pec/.test(Q))return"For chest: bench press, incline dumbbell press & push-ups. 3-4 sets of 8-12 reps. Check the chest video in the Muscle Atlas!";
+  if(/back/.test(Q))return"Back day = pull-ups, deadlifts, rows. Hit it twice a week for that V-taper.";
+  if(/abs|six pack/.test(Q))return"Abs are made in the kitchen 🍽️. Stay in calorie deficit + 10 min daily abs = visible six-pack.";
+  if(/leg|quad|squat/.test(Q))return"Never skip legs! Squats, lunges, leg press. Stronger legs = stronger everything.";
+  if(/diet|food|eat/.test(Q))return"Check the Diet section — pick veg or non-veg. Hit your protein (1.6g/kg bodyweight) and you'll grow.";
+  if(/protein/.test(Q))return"Aim for 1.6-2.2g protein per kg bodyweight. Eggs, chicken, paneer, dal, whey — mix it up.";
+  if(/motivat|tired|give up/.test(Q))return"Champion, the only workout you regret is the one you didn't do. One rep at a time. 💪";
+  if(/yoga/.test(Q))return"Start with Surya Namaskar — 5 rounds daily. Best mobility + cardio combo.";
+  if(/lose weight|fat/.test(Q))return"Calorie deficit + strength training + 8000 steps daily. No magic — just consistency.";
+  if(/gain|bulk|mass/.test(Q))return"Eat in 300-500 kcal surplus, lift heavy progressively, sleep 8 hrs. Patience > everything.";
+  return"Tell me more — try asking about chest, back, legs, diet, motivation or yoga!";
+}
+
+/* REVEAL */
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* INIT */
+renderPrograms();renderMuscles();renderDiet('veg');renderDietCreators();renderWorkoutCreators();renderYoga();renderVideos();
+</script>
+</body>
+</html>
